@@ -1,12 +1,22 @@
-function my_assets() {
-	wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array( '/Some-Thing-new/css/responsive-screen.css' ) );
-	wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'responsive-screen', get_stylesheet_directory_uri() . '/Some-Thing-new/css/responsive-screen.css' );
-	wp_enqueue_style( 'screen', get_stylesheet_directory_uri() . '/Some-Thing-new/css/screen.css' );
-	wp_enqueue_style( 'vendor', get_stylesheet_directory_uri() . '/Some-Thing-new/css/vendor.css' );
+<?php
+/* enqueue styles and scripts */
+function jpen_enqueue_assets() {
 
-	wp_enqueue_script( 'owl-carousel', get_stylesheet_directory_uri() . '/owl.carousel.js', array( 'jquery' ) );
-	wp_enqueue_script( 'theme-scripts', get_stylesheet_directory_uri() . '/website-scripts.js', array( 'owl-carousel', 'jquery' ), '1.0', true );
+  /* theme's primary style.css file */
+  wp_enqueue_style( 'style.css' , get_stylesheet_uri() );
+
+  /* template's primary css file */
+  wp_enqueue_style( 'style-css' , get_template_directory_uri() . './style.css' );
+
+  /* boostrap resources from theme files */
+  wp_enqueue_style( 'responsive-css' , get_template_directory_uri() . 'Some-Thing-new/css/responsive.css' );
+  wp_enqueue_script( 'bootstrap-js' , get_template_directory_uri() . '/js/bootstrap.min.js' , array( 'jquery' ) , false , true );
+
+  /*conditional resources for IE 9 */
+  wp_enqueue_script( 'simple-blog-html5', 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js' , array(), '3.7.0' );
+  wp_script_add_data( 'simple-blog-html5', 'conditional', 'lt IE 9' );
+  wp_enqueue_script( 'simple-blog-respondjs', 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js' , array(), '1.4.2' );
+  wp_script_add_data( 'simple-blog-respondjs', 'conditional', 'lt IE 9' );
 }
-
-add_action( 'wp_enqueue_scripts', 'my_assets' );
+add_action( 'wp_enqueue_scripts' , 'jpen_enqueue_assets' );
+?>
