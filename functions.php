@@ -1,5 +1,6 @@
 function my_assets() {
-	wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array( 'responsive-screen.css' ) );
+	wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array( '/Some-Thing-new/css/responsive-screen.css' ) );
+	wp_enqueue_style( 'responsive-screen', get_stylesheet_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'responsive-screen', get_stylesheet_directory_uri() . '/Some-Thing-new/css/responsive-screen.css' );
 	wp_enqueue_style( 'screen', get_stylesheet_directory_uri() . '/Some-Thing-new/css/screen.css' );
 	wp_enqueue_style( 'vendor', get_stylesheet_directory_uri() . '/Some-Thing-new/css/vendor.css' );
